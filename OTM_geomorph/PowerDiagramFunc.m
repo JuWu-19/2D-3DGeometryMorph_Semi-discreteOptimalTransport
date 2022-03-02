@@ -1,0 +1,103 @@
+function [PD, PDinf, Votex,PDv]  = PowerDiagramFunc(E, wts)
+% function [PD, PDinf] = powerDiagramWrapper(E, wts)
+%
+% E: set of points
+% wts: weights of the points in E
+%
+% The output cell PD contains the pieces of the power diagram indexed by
+% dimension. PD{1} contains fully-dimensional regions of the power diagram.
+% PDinf contains points on infinite edges of the power diagram.
+%
+% If the initial points are in R^2, the power diagram is drawn.
+disp('Lifting points');
+LE = liftPD(E, wts);
+disp('Computing convex hull');
+C = convhulln(LE);
+disp('Extracting lower hull');
+ind = normalsPD(LE, C);
+T = C(ind, :);
+nT = size(T,2);
+disp('Finding pieces');
+[P, total] = piecesPD(T);
+disp('Finding power centers');
+[PC, powers] = powercentersPD(T, E, wts);
+disp('Finding free boundary');
+FF = freeBouPD(T, P{nT-1});
+disp('Finding power diagram');
+[PD,PDv]= pwrDiagramPD(T, PC, E);
+
+center = mean(E,1);
+PDinf = zeros(size(FF));
+
+% find distance from center to farthest powercenter
+if size(E,2)==3
+length = 0.5*max(sqrt(sum(bsxfun(@minus, PC, center).^2,2)));
+else
+length = max(sqrt(sum(bsxfun(@minus, PC, center).^2,2)));
+
+end
+% Numbering
+num_pc=size(T,1);
+num_inf=size(FF,1);
+Votex=zeros(num_pc+num_inf,size(E,2));
+Votex(1:num_pc,:)=PC;
+disp('Finding points on infinite edges of the power diagram');
+for i=1:size(FF,1)
+    facet = E(FF(i,:),:);
+    ea = edgeAttPD(T, FF(i,:), E);
+    pc = PC(ea{1},:);
+    ct = mean(facet,1);
+    
+    % find vector normal to the facet
+    v = null(bsxfun(@minus, facet(1,:), facet(2:end,:)))';
+    
+    % reorient v to point outward
+    if dot(center - ct, v) > 0
+        v = -1*v;
+    end
+    
+    % scale v to ensure newpt is sufficiently far away
+    v = length*v;
+    
+    % find point on infinite edge of power diagram
+    newpt = pc + v;
+    % add new vortex
+    Votex(num_pc+i,:)=newpt;
+    p = piecesPD(FF(i,:));
+    for j=1:size(p,1)
+        for k=1:size(p{j},1)
+           % the following is to detect the sequence in the main unique
+           % triangular list
+           if j==1
+                ind=p{j}(k);
+                PD{j}{ind} = [PD{j}{ind}; newpt];
+                PDv{j}{ind}=[PDv{j}{ind},(num_pc+i)];
+           else
+               ind = find(ismember(P{j},p{j}(k,:), 'rows'));
+               PD{j}{ind} = [PD{j}{ind}; newpt];
+               PDv{j}{ind}=[PDv{j}{ind},(num_pc+i)];
+           end
+        end
+    end
+    
+    % keep track of generated point
+    PDinf(i,:) = newpt;
+end
+% plot 2D power diagram
+% if (nT-1==2)
+%     figure
+%     axis equal
+%     hold on
+%     plot(PC(:,1), PC(:,2), 'r.');
+%     powerdiagram(E(:,1), E(:,2), T, 'k', wts);
+%     plot(E(:,1), E(:,2), 'b*');
+% end
+% 
+% if (nT-1==3)
+%     figure
+%     axis equal
+%     hold on
+%     plot(PC(:,1), PC(:,2), 'r.');
+%     powerdiagram(E(:,1), E(:,2), T, 'r', wts);
+%     plot(E(:,1), E(:,2), 'b.');
+% end
