@@ -5,14 +5,11 @@ http://people.ee.ethz.ch/~mpt/2/
 meshes in "mesh4test" file
 3. The demos to play is "demo_2d" for 2d case, and demo_3d for 3d case.
 ### 2D Demo
-<img src="https://user-images.githubusercontent.com/58901415/126875317-2e8cf769-ff5f-40da-bbf3-f41aca2ad699.gif" width="400" height="300" />
-
-![2d1](https://user-images.githubusercontent.com/58901415/156457654-d2cfb1b8-e30a-419e-8948-f344685c63cf.png)
-<img src="https://user-images.githubusercontent.com/58901415/126875317-2e8cf769-ff5f-40da-bbf3-f41aca2ad699.gif" width="400" height="300" />
-
-![2d2](https://user-images.githubusercontent.com/58901415/156457734-d37e8a9a-1a20-419a-b85a-b0a40646e460.png)
+<img src="https://user-images.githubusercontent.com/58901415/156458603-f75aab4b-fc9c-429e-8dc1-bb611d592cca.gif" width="400" height="300" />
+<img src="https://user-images.githubusercontent.com/58901415/156458787-dc8bc901-4624-4f1d-a93b-ec24c5ab64db.gif" width="400" height="300" />
+<!---![newton3d_bm2_dynamic2_parallel](https://user-images.githubusercontent.com/58901415/156458512-dbce3193-2553-4700-b48c-e956a6d8854b.gif)
+![newton2e_bm1_rec2ring_dynamic1](https://user-images.githubusercontent.com/58901415/156458603-f75aab4b-fc9c-429e-8dc1-bb611d592cca.gif)
+![newton_2circles_500loops_bw](https://user-images.githubusercontent.com/58901415/156458787-dc8bc901-4624-4f1d-a93b-ec24c5ab64db.gif) --->
 ### 3D Demo
-<img src="https://user-images.githubusercontent.com/58901415/126875317-2e8cf769-ff5f-40da-bbf3-f41aca2ad699.gif" width="400" height="300" />
-
-![3d1](https://user-images.githubusercontent.com/58901415/156457785-8e303fa2-f1b1-4023-b41b-bd476817a443.png)
+<img src="https://user-images.githubusercontent.com/58901415/156458512-dbce3193-2553-4700-b48c-e956a6d8854b.gif" width="400" height="300" />
 
