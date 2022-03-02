@@ -4,7 +4,14 @@ http://people.ee.ethz.ch/~mpt/2/
 2. The codes are comprised of two parts "power_diagrams" and "OTM_geomorph". There are also some simple 2d/3d
 meshes in "mesh4test" file
 3. The demos to play is "demo_2d" for 2d case, and demo_3d for 3d case.
+
+### Regular Triangulation & Lower Facets of Convex Hull(lifted points)
+<img src="https://user-images.githubusercontent.com/58901415/156460242-23687434-1b12-4986-8348-192246a1f7d5.png" width="50%" height="50%" />
+<img src="https://user-images.githubusercontent.com/58901415/156460246-305652a5-6f25-4653-a7f9-5a8a96b4ec0f.png" width="50%" height="50%" />
+
 ### 2D-3D Constrained Power Diagram
+<img src="https://user-images.githubusercontent.com/58901415/156460012-e26daa86-ad86-4810-92d6-3e16f6d01f3c.png" width="50%" height="50%" />
+<img src="https://user-images.githubusercontent.com/58901415/156460043-d728f47d-e304-4db3-b304-f92ee41e6bde.png" width="50%" height="50%" />
 
 ### 2D Demo
 <img src="https://user-images.githubusercontent.com/58901415/156458603-f75aab4b-fc9c-429e-8dc1-bb611d592cca.gif" width="50%" height="50%" />
